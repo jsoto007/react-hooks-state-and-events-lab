@@ -5,10 +5,16 @@ function ShoppingList({ items }) {
 const [selectedCategory, setSelectedCategory] = useState('All')
 
 function handleOption(event){
-  setSelectedCategory(event.target.value)
+  setSelectedCategory(() => event.target.value)
 }
 
-const updatedValues = items.filter((item) => item.category !== selectedCategory)
+const updatedValues = items.filter((item) => {
+  if (selectedCategory === "All") {
+    return item
+  } else {
+    return item.category === selectedCategory}
+});
+
   return (
     <div className="ShoppingList">
       <div className="Filter">
